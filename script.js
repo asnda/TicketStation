@@ -7,15 +7,16 @@ function FashionWeekEvent(name, date, location, type, image, link, isPast) {
     this.link = link;
     this.isPast = isPast;
 
-    this.formatDate = function() {
-        return `${this.date.getDate()}-${this.date.getMonth() + 1}-${this.date.getFullYear()}`;
+    this.formatDate = function() { 
+        return `${this.date.getFullYear()}-${this.date.getMonth() + 1}-${this.date.getDate()}`;
+        // return `${this.date.toString()}`;
     };
 }
 
-const events = [
+let events = [
     new FashionWeekEvent(
       "Cape Town Fashion Week (Summer time 2025)",
-      new Date(), 
+      new Date(2024, 11, 10), 
       "Cape Town, Waterfall",
       "Runway Shows",
       "images/september.jpg",
@@ -23,16 +24,68 @@ const events = [
       false 
     ),
 
+    new FashionWeekEvent(
+        "Woza Winter Fashion Week",
+        new Date(2024, 5, 1),
+        "Johannesburg, Shepstone Gardens",
+        "Presentation",
+        "images/winter.jpg",
+        "event.html",
+        false
+    ),
+
+    new FashionWeekEvent(
+        "The Getaway Guide Fashion Week",
+        new Date(2024, 7, 12),
+        "Pretoria, Gautrain Station",
+        "Street Runaway",
+        "",
+        "event.html",
+        false
+    ),
+
+    new FashionWeekEvent(
+        "Blooming Talent: Graduate Fashion Week",
+        new Date(2024, 10, 26), 
+        "Stellenbosch, Spier Wine Farm",
+        "Emerging Designer Showcase",
+        "images/graduate_fashion.jpg",
+        "fashionweek.html",
+        false
+      ),
+
+      new FashionWeekEvent(
+        "Vintage Vibes: Retro Fashion Weekend",
+        new Date(2024, 6, 29), 
+        "Mbombela, Ilanga Mall",
+        "Vintage Clothing & Accessories Market",
+        "images/vintage_fashion.jpg",
+        "fashionweek.html",
+        false
+      ),
+
+      new FashionWeekEvent(
+        "Plus is Power: Curvy Fashion Celebration",
+        new Date(2024, 9, 7), 
+        "Port Elizabeth, Boardwalk Casino",
+        "Fashion for All Sizes",
+        "images/curvy_fashion.jpg",
+        "fashionweek.html",
+        false
+      ),
+
   ];
-  console.log(events)
+
+// sorting events by date 
+events.sort((event1, event2) => event1.date - event2.date)
+
 
   function displayEvents(eventList) {
     const eventsSection = document.getElementById("day-2");
     eventList.forEach(event => {
       const eventElement = document.createElement("article");
       eventElement.classList.add("event"); 
-  
-      
+
     //   const eventContent = `
     //     <h4>${event.name}</h4>
     //     <p><b>Date:</b> ${event.formatDate()}</p>
@@ -49,6 +102,7 @@ const events = [
                   <img src="${event.image}" alt="${event.name} image">
                 </div>
                 <h4>${event.name}</h4>
+                <p><b>Type:</b> ${event.type}</p>
                 <p><b>Location:</b> ${event.location}</p>
                 <a href="${event.link}">${event.isPast ? "See Highlights" : "View Details"}</a>
               </div>
