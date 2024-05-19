@@ -9,10 +9,10 @@
   <style>
     body {
       background-image: url(./assets/img/login.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-width: auto;
-}
+      background-repeat: no-repeat;
+      background-size: cover;
+      max-width: auto;
+    }
 
     .container {
       max-width: 400px;
@@ -30,15 +30,25 @@
     .form-group label {
       font-weight: bold;
     }
-    .btn{
-      background-color:  rgb(148, 3, 3);
-      border-color:  rgb(148, 3, 3);
+
+    .btn {
+      background-color: rgb(148, 3, 3);
+      border-color: rgb(148, 3, 3);
     }
-    
+
     .btn-primary:hover {
       background-color: rgb(148, 3, 3);
-      background-color:  rgb(148, 3, 3);
+      background-color: rgb(148, 3, 3);
     }
+    
+    .text-black {
+      color: black;
+    }
+    
+    .text-black a {
+      color: black;
+    }
+
   </style>
 </head>
 
@@ -56,6 +66,9 @@
       </div>
       <button type="submit" class="btn btn-primary btn-block">Login</button>
     </form>
+    <div class="text-center mt-3">
+      <a href="signup.html">Sign Up</a> | <a href="forgot-password.html">Forgot Password</a>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
