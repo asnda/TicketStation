@@ -272,7 +272,7 @@ function createTicketCard(category) {
           </ul>
         <hr>
         <div class="text-center">
-          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="${category.name.toLowerCase().replace(/\s/g, '-')}">Buy Now</button>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type=">Buy Now</button>
         </div>
       </div>
     </div>
@@ -288,3 +288,5 @@ function createTicketCard(category) {
 
   return card;
 }
+
+createTicketCard(categories)
