@@ -203,3 +203,56 @@ function displayFutureEvent(event) {
 displayEvents(events, "past-events", true);
 displayEvents(events, "future-events", false);
 
+// ticket card 
+function TicketCategory(name, price, description, features) {
+  this.name = name;
+  this.price = price;
+  this.description = description;
+  this.features = features; // Array of feature strings
+}
+
+const ticketInfo = {
+  categories: [
+    new TicketCategory(
+      "Standard Access",
+      350,
+      "Regular seating with refreshments.",
+      [
+        "Regular Seating",
+        "Refreshments",
+        "**Not included:**",
+        "Pre-show entertainment",
+        "Meet-and-greet opportunities with designers",
+        "Access to a VIP lounge",
+        "After Party",
+      ]
+    ),
+    new TicketCategory(
+      "Pro Access",
+      500,
+      "Regular seating with refreshments and pre-show entertainment.",
+      [
+        "Regular Seating",
+        "Refreshments",
+        "Pre-show entertainment",
+        "**Not included:**",
+        "Meet-and-greet opportunities with designers",
+        "Access to a VIP lounge",
+        "After Party",
+      ]
+    ),
+    new TicketCategory(
+      "Premium Access",
+      800,
+      "Preferred seating, refreshments, pre-show entertainment, meet-and-greet, VIP lounge access, and after party.",
+      [
+        "Preferred seating with a closer view",
+        "Refreshments",
+        "Pre-show entertainment",
+        "Meet-and-greet opportunities with designers",
+        "Access to a VIP lounge",
+        "After Party",
+      ]
+    ),
+  ]
+};
