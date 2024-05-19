@@ -16,7 +16,7 @@ function FashionWeekEvent(name, slogan, description, date, location, type, image
 
 let events = [
   new FashionWeekEvent(
-    "Cape Town Fashion Week (Summer time 2025)",
+    "Cape Town Fashion Week (Summer time 2024)",
     "",
     "",
     new Date(2024, 11, 10),
