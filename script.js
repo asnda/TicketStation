@@ -256,3 +256,35 @@ const ticketInfo = {
     ),
   ]
 };
+
+const ticketContainer = document.getElementById('ticket-container');
+
+function createTicketCard(category) {
+  const card = document.createElement('div');
+  card.classList.add('col-lg-4', 'mb-5', 'mb-lg-0');
+  card.innerHTML = `
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-muted text-uppercase text-center">${category.name}</h5>
+        <h6 class="card-price text-center">R${category.price}</h6>
+        <hr>
+        <ul class="fa-ul">
+          </ul>
+        <hr>
+        <div class="text-center">
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="${category.name.toLowerCase().replace(/\s/g, '-')}">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const featureList = card.querySelector('ul.fa-ul');
+  for (const feature of category.features) {
+    const listItem = document.createElement('li');
+    listItem.classList.add(feature.startsWith('**Not included:**') ? 'text-muted' : '');
+    listItem.innerHTML = `<span class="fa-li"><i class="fa fa-check"></i></span> ${feature}`;
+    featureList.appendChild(listItem);
+  }
+
+  return card;
+}
