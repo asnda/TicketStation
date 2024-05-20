@@ -122,7 +122,7 @@ let events = [
     "grand_opening.html",
     true
   ),
-  
+
   new FashionWeekEvent(
     "Swimwear Extravaganza",
     "Dive into the Latest Swimwear Trends",
@@ -156,7 +156,7 @@ events.sort((event1, event2) => event1.date - event2.date)
 function displayEvents(eventList, divName, isPastPage) {
   const eventsSection = document.getElementById(divName);
   eventList.forEach(event => {
-    if (isPastPage !== event.isPast) { 
+    if (isPastPage !== event.isPast) {
       return
     }
     const eventElement = document.createElement("article");
@@ -278,15 +278,19 @@ function createTicketCard(category) {
     </div>
   `;
 
-  const featureList = card.querySelector('ul.fa-ul');
-  for (const feature of category.features) {
-    const listItem = document.createElement('li');
-    listItem.classList.add(feature.startsWith('**Not included:**') ? 'text-muted' : '');
-    listItem.innerHTML = `<span class="fa-li"><i class="fa fa-check"></i></span> ${feature}`;
-    featureList.appendChild(listItem);
-  }
+//   const featureList = card.querySelector('ul.fa-ul');
+//   for (const feature of category.features) {
+//     const listItem = document.createElement('li');
+//     listItem.classList.add(feature.startsWith('**Not included:**') ? 'text-muted' : '');
+//     listItem.innerHTML = `<span class="fa-li"><i class="fa fa-check"></i></span> ${feature}`;
+//     featureList.appendChild(listItem);
+//   }
 
-  return card;
+//   const ticketCategories = ticketInfo.categories;
+//   for (const category of ticketCategories) {
+//     const ticketCard = createTicketCard(category);
+//     ticketContainer.appendChild(ticketCard);
+//   }
+
+//   return card;
 }
-
-createTicketCard(categories)
