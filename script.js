@@ -1,66 +1,93 @@
-let tColorA = document.getElementById('tColorA'),
-iconA = document.querySelector('.fa-credit-card'),
-cDetails = document.querySelector('.card-details');
+class PaymentForm {
+  constructor() {
+    this.tColorA = document.getElementById("tColorA");
+    this.iconA = document.querySelector(".fa-credit-card");
+    this.cDetails = document.querySelector(".card-details");
 
-function doFun(){
-    tColorA.style.color = "grey";
-    iconA.style.color = "grey";
-    cDetails.style.display = "block";
-}
+    this.payNowButton = document.getElementById("payNowButton");
+    this.cardNumberInput = document.getElementById("number");
+    this.expiryDateInput = document.getElementById("e-date");
+    this.cvvInput = document.getElementById("cvv");
+    this.emailInput = document.getElementById("email");
+    this.emailError = document.getElementById("emailError");
 
+    this.addEventListeners();
+  }
 
-// Select the Pay Now button
-const payNowButton = document.getElementById('payNowButton');
+  doFun() {
+    this.tColorA.style.color = "grey";
+    this.iconA.style.color = "grey";
+    this.cDetails.style.display = "block";
+  }
 
-// Select the card number, expiry date, CVV, and email input fields
-const cardNumberInput = document.getElementById('number');
-const expiryDateInput = document.getElementById('e-date');
-const cvvInput = document.getElementById('cvv');
-const emailInput = document.getElementById('email');
-const emailError = document.getElementById('emailError');
+  addEventListeners() {
+    this.cardNumberInput.addEventListener(
+      "input",
+      this.togglePayNowButton.bind(this)
+    );
+    this.expiryDateInput.addEventListener(
+      "input",
+      this.togglePayNowButton.bind(this)
+    );
+    this.cvvInput.addEventListener("input", this.togglePayNowButton.bind(this));
+    this.emailInput.addEventListener("input", this.validateEmail.bind(this));
+    this.emailInput.addEventListener(
+      "input",
+      this.togglePayNowButton.bind(this)
+    );
 
-// Add event listener to the input fields to check if they are filled
-cardNumberInput.addEventListener('input', togglePayNowButton);
-expiryDateInput.addEventListener('input', togglePayNowButton);
-cvvInput.addEventListener('input', togglePayNowButton);
-emailInput.addEventListener('input', validateEmail);
-emailInput.addEventListener('input', togglePayNowButton);
+    this.cardNumberInput.addEventListener("input", this.allowNumbersOnly);
+    this.expiryDateInput.addEventListener("input", this.allowNumbersOnly);
+    this.cvvInput.addEventListener("input", this.allowNumbersOnly);
 
-// Function to toggle the state of the Pay Now button based on input fields
-function togglePayNowButton() {
-    const cardNumber = cardNumberInput.value.trim();
-    const expiryDate = expiryDateInput.value.trim();
-    const cvv = cvvInput.value.trim();
-    const email = emailInput.value.trim();
+    this.payNowButton.addEventListener(
+      "click",
+      this.handlePayNowClick.bind(this)
+    );
 
-    // Enable the Pay Now button if all input fields are filled and email is valid
-    if (cardNumber !== '' && expiryDate !== '' && cvv !== '' && isValidEmail(email)) {
-        payNowButton.disabled = false;
+    this.tColorA.addEventListener("click", this.doFun.bind(this));
+  }
+
+  allowNumbersOnly(event) {
+    event.target.value = event.target.value.replace(/\D/g, "");
+  }
+
+  togglePayNowButton() {
+    const cardNumber = this.cardNumberInput.value.trim();
+    const expiryDate = this.expiryDateInput.value.trim();
+    const cvv = this.cvvInput.value.trim();
+    const email = this.emailInput.value.trim();
+
+    if (
+      cardNumber !== "" &&
+      expiryDate !== "" &&
+      cvv !== "" &&
+      this.isValidEmail(email)
+    ) {
+      this.payNowButton.disabled = false;
     } else {
-        // Disable the Pay Now button if any input field is empty or email is invalid
-        payNowButton.disabled = true;
+      this.payNowButton.disabled = true;
     }
-}
+  }
 
-// Function to validate email format
-function validateEmail() {
-    const email = emailInput.value.trim();
-    if (!isValidEmail(email)) {
-        emailError.textContent = 'Please enter a valid email address';
+  validateEmail() {
+    const email = this.emailInput.value.trim();
+    if (!this.isValidEmail(email)) {
+      this.emailError.textContent = "Please enter a valid email address";
     } else {
-        emailError.textContent = '';
+      this.emailError.textContent = "";
     }
-}
+  }
 
-// Function to check if email is in valid format
-function isValidEmail(email) {
+  isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  handlePayNowClick() {
+    alert("Your payment has been received!");
+  }
 }
 
-// Function to handle the Pay Now button click event
-payNowButton.addEventListener('click', function() {
-    // Show the alert
-    alert("Your payment has been received!");
+document.addEventListener("DOMContentLoaded", () => {
+  new PaymentForm();
 });
-
-
