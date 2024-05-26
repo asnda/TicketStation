@@ -248,7 +248,7 @@ const ticketInfo = {
       800,
       "Preferred seating, refreshments, pre-show entertainment, meet-and-greet, VIP lounge access, and after party.",
       [
-        "Preferred seating with a closer view",
+        "Exclusive Seating Area",
         "Refreshments",
         "Pre-show entertainment",
         "Meet-and-greet opportunities with designers",
