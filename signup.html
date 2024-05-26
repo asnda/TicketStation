@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up Page</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- Add any additional CSS files here -->
+
+  <!-- CSS code for the sign up page -->
   <style>
     body {
       background-image: url(./assets/img/moodboard.webp);
@@ -15,20 +16,27 @@
       margin-top: 100px;
       color: white;
     }
-    .btn{
+    .btn {
       background-color: rgb(148, 3, 3);
       border-color: rgb(148, 3, 3);
     }
     .btn-primary:hover {
       background-color: rgb(148, 3, 3);
-      background-color: rgb(148, 3, 3);
+      border-color: rgb(148, 3, 3);
+    }
+    #confirmation-card {
+      display: none;
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 5px;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2 class="text-center mb-4">Sign Up</h2>
-    <form>
+    <form id="signup-form">
       <div class="form-group">
         <label for="name">Full Name:</label>
         <input type="text" class="form-control" id="name" name="name" required>
@@ -46,10 +54,16 @@
     <div class="text-center mt-3">
       <p>Already have an account? <a href="index.html">Sign In</a></p>
     </div>
+    <div id="confirmation-card" class="card">
+      <div class="card-body">
+        <h5 class="card-title">Sign Up Successful!</h5>
+        <p class="card-text">Thank you for signing up. Welcome aboard!</p>
+      </div>
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- Add any additional JavaScript files here -->
+  <script src="assets/js/signup.js"></script>
 </body>
 </html>
