@@ -1,17 +1,19 @@
-function FashionWeekEvent(name, slogan, description, date, location, type, image, link, isPast) {
-  this.name = name;
-  this.slogan = slogan;
-  this.description = description;
-  this.date = date;
-  this.location = location;
-  this.type = type;
-  this.image = image;
-  this.link = link;
-  this.isPast = isPast;
+class FashionWeekEvent {
+  constructor(name, slogan, description, date, location, type, image, link, isPast) {
+    this.name = name;
+    this.slogan = slogan;
+    this.description = description;
+    this.date = date;
+    this.location = location;
+    this.type = type;
+    this.image = image;
+    this.link = link;
+    this.isPast = isPast;
 
-  this.formatDate = function () {
-    return `${this.date.getFullYear()}-${this.date.getMonth() + 1}-${this.date.getDate()}`;
-  };
+    this.formatDate = function () {
+      return `${this.date.getFullYear()}-${this.date.getMonth() + 1}-${this.date.getDate()}`;
+    };
+  }
 }
 
 let events = [
@@ -204,11 +206,13 @@ displayEvents(events, "past-events", true);
 displayEvents(events, "future-events", false);
 
 // ticket card 
-function TicketCategory(name, price, description, features) {
-  this.name = name;
-  this.price = price;
-  this.description = description;
-  this.features = features; // Array of feature strings
+class TicketCategory {
+  constructor(name, price, description, features) {
+    this.name = name;
+    this.price = price;
+    this.description = description;
+    this.features = features; // Array of feature strings
+  }
 }
 
 const ticketInfo = {
@@ -258,39 +262,54 @@ const ticketInfo = {
 };
 
 const ticketContainer = document.getElementById('ticket-container');
+let delay = 100;
 
 function createTicketCard(category) {
   const card = document.createElement('div');
-  card.classList.add('col-lg-4', 'mb-5', 'mb-lg-0');
+  card.classList.add("col-lg-4");
+  card.setAttribute("data-aos", "fade-up");
+  card.setAttribute("data-aos-delay", delay);
+  delay += 100;
   card.innerHTML = `
-    <div class="card">
+    <div class="card mb-5 mb-lg-0">
       <div class="card-body">
         <h5 class="card-title text-muted text-uppercase text-center">${category.name}</h5>
         <h6 class="card-price text-center">R${category.price}</h6>
         <hr>
-        <ul class="fa-ul">
-          </ul>
+        <ul class="fa-ul"></ul>
         <hr>
         <div class="text-center">
-          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type=">Buy Now</button>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="${dataTicketType(category.name)}">Buy Now</button>
         </div>
       </div>
     </div>
   `;
 
-//   const featureList = card.querySelector('ul.fa-ul');
-//   for (const feature of category.features) {
-//     const listItem = document.createElement('li');
-//     listItem.classList.add(feature.startsWith('**Not included:**') ? 'text-muted' : '');
-//     listItem.innerHTML = `<span class="fa-li"><i class="fa fa-check"></i></span> ${feature}`;
-//     featureList.appendChild(listItem);
-//   }
+  const featureList = card.querySelector('ul.fa-ul');
+  let className = "";
+  for (const feature of category.features) {
+    const listItem = document.createElement('li');
+    if (feature.startsWith('**Not included:**')) {
+      className = "text-muted";
+      continue;
+    }
+    if (className) {
+      listItem.classList.add(className);
+    }
+    listItem.innerHTML = `<span class="fa-li"><i class="fa fa-check"></i></span> ${feature}`;
+    featureList.appendChild(listItem);
 
-//   const ticketCategories = ticketInfo.categories;
-//   for (const category of ticketCategories) {
-//     const ticketCard = createTicketCard(category);
-//     ticketContainer.appendChild(ticketCard);
-//   }
+  }
 
-//   return card;
+  return card;
+}
+
+const ticketCategories = ticketInfo.categories;
+for (const category of ticketCategories) {
+  const ticketCard = createTicketCard(category);
+  ticketContainer.appendChild(ticketCard);
+}
+
+function dataTicketType(access) {
+  return access.split(' ').join('-').toLowerCase();
 }
