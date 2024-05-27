@@ -8,24 +8,35 @@ class User {
 
   // Code for method used 
   authenticate() {
-    return true;
+    return this.usernameOrEmail === 'user@example.com' && this.password === 'password123';
   }
 }
 
-$(document).ready(function() {
-  $('#loginForm').submit(function(e) {
-    e.preventDefault();
-    const usernameOrEmail = $('#username').val();
-    const password = $('#password').val();
-    
     // Code for new object using the constructor
-    const user = new User(usernameOrEmail, '', password);
+    class LoginHandler {
+      constructor(formId) {
+        this.form = document.getElementById(formId);
+        this.init();
+      }
     
-    // Code to redirect page to homepage
-    if (user.authenticate()) {
-      window.location.href = 'index.html';
-    } else {
-      alert('Invalid username/email or password');
+      init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+      }
+    
+      handleSubmit(e) {
+        e.preventDefault();
+        const usernameOrEmail = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        const user = new User(usernameOrEmail, password);
+        
+        if (user.authenticate()) {
+          window.location.href = 'index.html';
+        } else {
+          alert('Invalid username/email or password');
+        }
+      }
     }
-  });
-});
+    document.addEventListener('DOMContentLoaded', function() {
+      new LoginHandler('loginForm');
+    });
